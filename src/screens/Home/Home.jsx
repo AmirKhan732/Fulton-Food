@@ -10,7 +10,6 @@ const Home = () => {
         className="d-flex flex-row justify-content-center align-items-center pt-5"
         style={{ height: "80vh" }}
       >
-        {/* Left: Text Section */}
         <div className="w-50 px-5">
           <h5 className="text-white fw-light">Chase The New Flavour</h5>
           <h1
