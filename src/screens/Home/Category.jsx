@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import burgerImage from "../../assets/1.png";
-import bigimg from "../../assets/burger.png";
 import sandwichImg from "../../assets/Sandwich.jpg";
 import hotdogImg from "../../assets/hotdog.jpg";
 import drinkImg from "../../assets/drinks.jpg";

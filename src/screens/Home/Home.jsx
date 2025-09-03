@@ -7,7 +7,7 @@ import home4 from "../../assets/home4.png";
 import home5 from "../../assets/4.png";
 import chef from "../../assets/chef.jpeg";
 import { useNavigate } from "react-router-dom";
-import BottomComponent from "./BottomComponent";
+import BlogsComponent from "./BlogsComponent";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -135,9 +135,9 @@ const Home = () => {
             slightly detailed for a section description?
           </p>
           <div className="d-flex justify-content-center align-items-center">
-            <div className="d-flex flex-row w-50 bg-white align-items-center justify-content-between border-start border-5 border-warning rounded-4 shadow p-3">
+            <div className="d-flex flex-row w-50 bg-white align-items-center justify-content-between border-start border-5 border-warning rounded-4 shadow px-3">
               <span className="text-warning fw-bold h1">5 +</span>
-              <span className="text-dark fw-bold h4 mb-0">
+              <span className="text-dark fw-bold h2 mb-0">
                 Years Of Experience
               </span>
             </div>
@@ -184,7 +184,7 @@ const Home = () => {
         </div>
       </div>
       {/* bottom component */}
-      <BottomComponent />
+      <BlogsComponent />
     </div>
   );
 };
