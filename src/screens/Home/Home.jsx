@@ -7,6 +7,7 @@ import home4 from "../../assets/home4.png";
 import home5 from "../../assets/4.png";
 import chef from "../../assets/chef.jpeg";
 import { useNavigate } from "react-router-dom";
+import BottomComponent from "./BottomComponent";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -99,11 +100,13 @@ const Home = () => {
       </div>
       <SpecialListComponent />
       <Category />
-      <div className="py-5">
+
+      <div className="">
         <img src={home4} alt="chef" className="img-fluid w-100 bg-danger" />
       </div>
+      {/* why choose us */}
       <div
-        className="container d-flex flex-row justify-content-center align-items-center pt-5 my-5"
+        className="container d-flex flex-row justify-content-center align-items-center  my-5 "
         style={{ height: "80vh" }}
       >
         <div className="w-50 text-center">
@@ -141,7 +144,12 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="container d-flex flex-row justify-content-center align-items-center pt-5">
+      {/* chef section */}
+      <div
+        style={{ backgroundColor: "#040404" }}
+        className="
+       d-flex flex-row justify-content-center  align-items-center p-5"
+      >
         <div className="w-50 px-5 ">
           <h1
             className="text-white slug-desc my-4"
@@ -175,6 +183,8 @@ const Home = () => {
           />
         </div>
       </div>
+      {/* bottom component */}
+      <BottomComponent />
     </div>
   );
 };
