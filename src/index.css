@@ -1,12 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 body {
   margin: 0;
   padding: 0;
-  background-color: #292929;
+  background-color: #202020;
   /* font-family: "Cormorant", serif !important; */
 }
 .slug-desc {
   color: white;
   font-family: "Cormorant", serif !important;
   /* font-size: 72px !important; */
+}
+.theme-color {
+  color: #ff9f0d !important;
+}
+.bg-theme {
+  background-color: #ff9f0d !important;
+}
+.signature{
+  font-family: "Great Vibes", cursive !important;
+
 }
