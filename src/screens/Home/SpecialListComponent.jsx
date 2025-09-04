@@ -42,7 +42,7 @@ export default function SpecialListComponent() {
             className="text-white slug-desc my-4 "
             style={{ fontSize: "60px", lineHeight: "70px" }}
           >
-            <span style={{ color: "#FF9F0D", fontSize: "50px" }}>Ch</span>oose
+            <span style={{ color: "#FF9F0D", fontSize: "70px" }}>Ch</span>oose
             our special items
           </h1>
         </div>

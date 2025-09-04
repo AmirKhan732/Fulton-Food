@@ -1,15 +1,23 @@
-import Header from "./components/Header/Header";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import routesConfig from "./routesConfig";
-
+import WebLayout from "./components/WebLayout/WebLayout";
 function App() {
   return (
     <>
-      <Header />
       <Routes>
         {routesConfig.map((route, index) => (
-          <Route key={index} path={route.path} element={route.element} />
+          <Route
+            key={index}
+            path={route.path}
+            element={
+              route.webLayout ? (
+                <WebLayout>{route.element}</WebLayout>
+              ) : (
+                route.element
+              )
+            }
+          />
         ))}
       </Routes>
     </>

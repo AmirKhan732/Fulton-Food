@@ -139,7 +139,7 @@ export default function Category() {
           className="text-white slug-desc my-4"
           style={{ fontSize: "60px", lineHeight: "70px" }}
         >
-          <span className="theme-color" style={{ fontSize: "60px" }}>
+          <span className="theme-color" style={{ fontSize: "70px" }}>
             Ch
           </span>
           oose our special items

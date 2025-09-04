@@ -7,7 +7,9 @@ import home4 from "../../assets/home4.png";
 import home5 from "../../assets/4.png";
 import chef from "../../assets/chef.jpeg";
 import { useNavigate } from "react-router-dom";
+import ReviewComponent from "./ReviewComponent";
 import BlogsComponent from "./BlogsComponent";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -35,7 +37,7 @@ const Home = () => {
             information, and development.
           </p>
           <button
-            className="btn btn-warning text-white my-2"
+            className="btn bg-theme text-white my-5"
             onClick={() => navigate("/menu")}
           >
             Menu
@@ -134,9 +136,9 @@ const Home = () => {
             a bit shorter and catchier for a banner/hero section, or keep it
             slightly detailed for a section description?
           </p>
-          <div className="d-flex justify-content-center align-items-center">
-            <div className="d-flex flex-row w-50 bg-white align-items-center justify-content-between border-start border-5 border-warning rounded-4 shadow px-3">
-              <span className="text-warning fw-bold h1">5 +</span>
+          <div className="d-flex justify-content-center pt-4 align-items-center">
+            <div className="d-flex flex-row  bg-white align-items-center justify-content-between border-start border-5 border-warning rounded-4 shadow p-3">
+              <span className="text-warning fw-bold h1">5+ </span>
               <span className="text-dark fw-bold h2 mb-0">
                 Years Of Experience
               </span>
@@ -184,6 +186,7 @@ const Home = () => {
         </div>
       </div>
       {/* bottom component */}
+      <ReviewComponent />
       <BlogsComponent />
     </div>
   );
