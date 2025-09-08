@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import burgerImage from "../../assets/1.png";
-import sandwichImg from "../../assets/Sandwich.jpg";
-import hotdogImg from "../../assets/hotdog.jpg";
-import drinkImg from "../../assets/drinks.jpg";
+import burgerImage from "../assets/1.png";
+import sandwichImg from "../assets/Sandwich.jpg";
+import hotdogImg from "../assets/hotdog.jpg";
+import drinkImg from "../assets/drinks.jpg";
 
 export default function Category() {
   const [activeCategory, setActiveCategory] = useState("Burgers");

@@ -1,7 +1,7 @@
 import React from "react";
-import list1 from "../../assets/blogs.png";
-import list2 from "../../assets/blogs.png";
-import list3 from "../../assets/blogs.png";
+import list1 from "../assets/blogs.png";
+import list2 from "../assets/blogs.png";
+import list3 from "../assets/blogs.png";
 
 export default function BlogsComponent() {
   const data = [
@@ -26,8 +26,7 @@ export default function BlogsComponent() {
   ];
 
   return (
-    <div className="container my-5">
-      {/* Section Header */}
+    <div className="container ">
       <div className="text-center mb-5">
         <span className="fs-4 fw-bold theme-color">Blog Post</span>
         <h1 className="text-white fw-bold mt-3">
@@ -35,7 +34,6 @@ export default function BlogsComponent() {
         </h1>
       </div>
 
-      {/* Blog Cards */}
       <div className="row justify-content-center">
         {data.map((item) => (
           <div
@@ -51,22 +49,15 @@ export default function BlogsComponent() {
                 overflow: "hidden",
               }}
             >
-              {/* Blog Image */}
               <img
                 src={item.image}
                 alt={item.description}
                 className="card-img-top"
-                style={{width:"100%", height: "auto", objectFit: "cover" }}
+                style={{ width: "100%", height: "auto", objectFit: "cover" }}
               />
-
-              {/* Blog Body */}
               <div className="card-body text-white">
-                {/* Date */}
                 <p className="theme-color fw-bold mb-2">{item.date}</p>
-                {/* Description */}
                 <p className="card-text slug-desc">{item.description}</p>
-
-                {/* Footer (Learn More + Icons) */}
                 <div className="d-flex justify-content-between align-items-center mt-3">
                   <a href="#" className="text-white text-decoration-underline">
                     Learn More

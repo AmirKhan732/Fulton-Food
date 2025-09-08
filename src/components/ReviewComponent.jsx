@@ -5,9 +5,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
-import image2 from "../../assets/review.png";
-import image3 from "../../assets/userreview.png";
-import image4 from "../../assets/blogs.png";
+import image2 from "../assets/review.png";
+import image3 from "../assets/userreview.png";
+import image4 from "../assets/blogs.png";
 
 export default function ReviewComponent() {
   const reviews = [
@@ -51,7 +51,7 @@ export default function ReviewComponent() {
       }}
       modules={[Navigation, EffectFade, Autoplay]}
       loop={true}
-      className="mySwiper"
+      className="mySwiper my-4"
     >
       {reviews.map((review) => (
         <SwiperSlide key={review.id}>
@@ -60,14 +60,9 @@ export default function ReviewComponent() {
             style={{ height: "80vh" }}
           >
             <div className="w-75 text-center">
-              <img
-                src={review.leftImg}
-                alt="chef"
-                className="img-fluid  "
-             
-              />
+              <img src={review.leftImg} alt="chef" className="img-fluid  " />
             </div>
-            <div className="w-50 px-5 py-2">
+            <div className="w-50 px-5 ">
               <h3 className="fw-light signature theme-color">Testimonials</h3>
               <h2 className="text-white slug-desc">Customer Reviews</h2>
               <p className="text-white fw-3">{review.text}</p>

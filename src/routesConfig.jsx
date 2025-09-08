@@ -10,7 +10,8 @@ const routesConfig = [
   { path: "/menu", element: <Menu />, webLayout: true },
   { path: "/blogs", element: <Blogs />, webLayout: true },
   { path: "/contact", element: <Contact />, webLayout: true },
-  { path: "/about", element: <About />, webLayout: false },
+  { path: "/about", element: <About />, webLayout: true },
+
 ];
 
 export default routesConfig;

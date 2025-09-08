@@ -1,9 +1,10 @@
 import React from "react";
-import list1 from "../../assets/fvt.png";
-import list2 from "../../assets/fvt.png";
-import list3 from "../../assets/fvt.png";
+import list1 from "../assets/fvt.png";
+import list2 from "../assets/fvt.png";
+import list3 from "../assets/fvt.png";
 
 export default function SpecialListComponent() {
+  
   const data = [
     {
       id: 1,
@@ -32,7 +33,7 @@ export default function SpecialListComponent() {
   ];
 
   return (
-    <div className="container my-4">
+    <div className="container ">
       <div className="row justify-content-center">
         <div className="text-center ">
           <span className="slug-desc fs-3 " style={{ color: "#FF9F0D" }}>

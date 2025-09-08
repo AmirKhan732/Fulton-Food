@@ -35,6 +35,14 @@ const Header = () => {
             Menu
           </NavLink>
           <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? "btn text-warning" : "btn text-white"
+            }
+          >
+            About
+          </NavLink>
+          <NavLink
             to="/blogs"
             className={({ isActive }) =>
               isActive ? "btn text-warning" : "btn text-white"
