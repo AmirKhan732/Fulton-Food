@@ -1,14 +1,16 @@
 import React from "react";
 import image1 from "../../assets/1.png";
-import SpecialListComponent from "../../components/SpecialListComponent";
-import Category from "../../components/Category";
 import home4 from "../../assets/home4.png";
 import chef from "../../assets/chef.jpeg";
 import { useNavigate } from "react-router-dom";
+
+
+import Category from "../../components/Category";
 import ReviewComponent from "../../components/ReviewComponent";
 import BlogsComponent from "../../components/BlogsComponent";
 import AboutUsComponent from "../../components/AboutUsComponent";
 import WhyChooseUsBlock from "../../components/WhyChooseUsBlock";
+import SpecialListComponent from "../../components/SpecialListComponent";
 
 const Home = () => {
   const navigate = useNavigate();

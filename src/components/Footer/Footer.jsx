@@ -35,22 +35,51 @@ export default function Footer() {
         <div className="col-6 col-md-3 col-lg-2  px-4 py-4">
           <h2 className="my-3 slug-desc mx-2">Useful Links</h2>
           <div className="d-flex flex-column gap-2">
-            <button onClick={() => navigate("/")} className="btn text-white text-start">Home</button>
-            <button onClick={() => navigate("/menu")} className="btn text-white text-start">Menu</button>
-            <button onClick={() => navigate("/blog")} className="btn text-white text-start">Blog</button>
-            <button onClick={() => navigate("/contact")} className="btn text-white text-start">Contact</button>
+            <button
+              onClick={() => navigate("/")}
+              className="btn text-white text-start"
+            >
+              Home
+            </button>
+            <button
+              onClick={() => navigate("/menu")}
+              className="btn text-white text-start"
+            >
+              Menu
+            </button>
+            <button
+              onClick={() => navigate("/blog")}
+              className="btn text-white text-start"
+            >
+              Blog
+            </button>
+            <button
+              onClick={() => navigate("/contact")}
+              className="btn text-white text-start"
+            >
+              Contact
+            </button>
           </div>
         </div>
         <div className="col-6 col-md-3 col-lg-2 px-4 py-4">
           <h2 className="my-3 slug-desc mx-2">Help?</h2>
           <div className="d-flex flex-column gap-2">
-            <button onClick={() => navigate("/faq")} className="btn text-white text-start">
+            <button
+              onClick={() => navigate("/faqs")}
+              className="btn text-white text-start"
+            >
               FAQs
             </button>
-            <button onClick={() => navigate("/terms")} className="btn text-white text-start">
+            <button
+              onClick={() => navigate("/termsandconditions")}
+              className="btn text-white text-start"
+            >
               Terms & Conditions
             </button>
-            <button onClick={() => navigate("/policy")} className="btn text-white text-start">
+            <button
+              onClick={() => navigate("/policy")}
+              className="btn text-white text-start"
+            >
               Support & Policy
             </button>
           </div>

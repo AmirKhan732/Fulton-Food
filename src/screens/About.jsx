@@ -1,12 +1,10 @@
-import React from "react";
 import aboutline from "../assets/aboutline.png";
 import chef from "../assets/chef.jpeg";
 import AboutUsComponent from "../components/AboutUsComponent";
 import WhyChooseUsBlock from "../components/WhyChooseUsBlock";
-import ReviewComponent from "./Home/ReviewComponent";
+import ReviewComponent from "../components/ReviewComponent";
 import BlogsComponent from "../components/BlogsComponent";
 
-import chefhat from "../assets/chefhat.png";
 import GoBack from "../components/GoBack";
 
 const About = () => {

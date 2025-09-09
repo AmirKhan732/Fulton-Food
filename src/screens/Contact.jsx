@@ -78,7 +78,7 @@ const Contact = () => {
                 <TextField
                   name="firstName"
                   label="First Name"
-                  variant="outlined"
+                  variant="filled"
                   value={formData.firstName}
                   onChange={handleChange}
                   error={!!errors.firstName}
@@ -87,7 +87,7 @@ const Contact = () => {
                 <TextField
                   name="lastName"
                   label="Last Name"
-                  variant="outlined"
+                  variant="filled"
                   value={formData.lastName}
                   onChange={handleChange}
                   error={!!errors.lastName}
@@ -98,7 +98,7 @@ const Contact = () => {
                 name="email"
                 label="Email"
                 type="email"
-                variant="outlined"
+                variant="filled"
                 value={formData.email}
                 onChange={handleChange}
                 error={!!errors.email}
@@ -108,7 +108,7 @@ const Contact = () => {
                 name="phone"
                 label="Phone Number"
                 type="tel"
-                variant="outlined"
+                variant="filled"
                 value={formData.phone}
                 onChange={handleChange}
                 error={!!errors.phone}
@@ -117,16 +117,14 @@ const Contact = () => {
               <TextField
                 name="message"
                 label="Message"
-             
                 multiline
                 rows={4}
-                variant="outlined"
+                variant="filled"
                 value={formData.message}
                 onChange={handleChange}
                 error={!!errors.message}
                 helperText={errors.message}
               />
-
               <div className="d-flex justify-content-end">
                 <Button
                   type="submit"

@@ -172,24 +172,19 @@ export default function Blogs() {
 
   const totalPages = Math.ceil(Blogs.length / blogsPerPage);
 
-  // Slice blogs for current page
   const startIndex = (page - 1) * blogsPerPage;
   const endIndex = startIndex + blogsPerPage;
   const paginatedBlogs = Blogs.slice(startIndex, endIndex);
   return (
     <div className="">
-     <GoBack />
+      <GoBack />
       <div className="d-flex flex-row justify-content-center ">
         {/* Blogs Container */}
         <div className="col-md-7 " ref={blogContainerRef}>
           {paginatedBlogs.map((item) => (
             <div className="mb-3" key={item.id}>
               <div className="col-md-12">
-                <img
-                  src={item.image}
-                  className="img-fluid rounded-start"
-                  alt="..."
-                />
+                <img src={item.image} className="img-fluid rounded" alt="..." />
               </div>
               <div className="">
                 <div className="card-body">
@@ -204,11 +199,12 @@ export default function Blogs() {
                     {item.description}
                   </p>
                   <a
-                    href="#"
-                    className="btn theme-color btn-outline slug-desc mb-4"
+                 
+                    onClick={() => navigation("/blogdetail")}
+                    className="btn theme-color btn-outline-light slug-desc mb-4"
                   >
-                    {item.btn}{" "}
-                    <i className="bi bi-box-arrow-in-up-right ms-2"></i>
+                    {item.btn}
+                    <i class="bi bi-box-arrow-in-up-right ms-2"></i>
                   </a>
                 </div>
               </div>
@@ -218,12 +214,17 @@ export default function Blogs() {
         <div className="col-md-4  px-2">
           {/* input field */}
           <div
-            className="input-group slug-desc  bg-theme"
-            style={{ height: 50, border: "1px solid #FF9F0D" }}
+            className="input-group slug-desc  bg-theme "
+            style={{
+              height: 50,
+              border: "1px solid #FF9F0D",
+              borderRadius: "10px",
+              padding: "1.5px",
+            }}
           >
             <input
               type="text"
-              className="form-control border-0 rounded-0"
+              className="form-control border-0  rounded-3"
               placeholder="Search Your Keywords..."
             />
             <button className="btn slug-desc px-4 border-0 rounded-0">
@@ -233,7 +234,7 @@ export default function Blogs() {
           {/* Recent Post */}
           <div
             className="px-5 py-4 mt-5 "
-            style={{ border: "1px solid #FF9F0D" }}
+            style={{ border: "1px solid #FF9F0D", borderRadius: "10px" }}
           >
             <h3 className="text-white slug-desc">Recent Post</h3>
             {RecentPost.map((item, index) => (
@@ -265,7 +266,7 @@ export default function Blogs() {
           {/* popular tags */}
           <div
             className="px-5 py-4 mt-5 "
-            style={{ border: "1px solid #FF9F0D" }}
+            style={{ border: "1px solid #FF9F0D", borderRadius: "10px" }}
           >
             <h3 className="text-white slug-desc mb-3">Popular Tags</h3>
             <div className="d-flex flex-wrap gap-2">
@@ -283,7 +284,7 @@ export default function Blogs() {
           {/* Photo Gallery */}
           <div
             className="px-5 py-4 mt-5 "
-            style={{ border: "1px solid #FF9F0D" }}
+            style={{ border: "1px solid #FF9F0D", borderRadius: "10px" }}
           >
             <h3 className="text-white slug-desc mb-3">Photo Gallery</h3>
             <div className="d-flex flex-wrap gap-2">
@@ -300,7 +301,7 @@ export default function Blogs() {
           {/* Social Platform */}
           <div
             className="px-5 py-4 mt-5 "
-            style={{ border: "1px solid #FF9F0D" }}
+            style={{ border: "1px solid #FF9F0D", borderRadius: "10px" }}
           >
             <h3 className="text-white slug-desc mb-3">Social Platform</h3>
             <div className="d-flex flex-wrap gap-3">
@@ -339,15 +340,16 @@ export default function Blogs() {
               sx={{
                 "& .MuiPaginationItem-root": {
                   color: "white",
-                  border: "1px solid white",
+                  border: "1px solid ",
+                  margin: "0px 8px",
                 },
                 "& .MuiPaginationItem-root.Mui-selected": {
-                  backgroundColor: "yellow",
+                  backgroundColor: "#ff9f0d",
                   color: "black",
-                  border: "1px solid yellow",
+                  border: "1px solid white",
                 },
                 "& .MuiPaginationItem-root.Mui-selected:hover": {
-                  backgroundColor: "yellow",
+                  backgroundColor: "#ff9f0d",
                 },
               }}
             />
