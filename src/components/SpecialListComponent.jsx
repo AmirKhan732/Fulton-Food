@@ -1,9 +1,10 @@
 import React from "react";
-import list1 from "../../assets/fvt.png";
-import list2 from "../../assets/fvt.png";
-import list3 from "../../assets/fvt.png";
+import list1 from "../assets/fvt.png";
+import list2 from "../assets/fvt.png";
+import list3 from "../assets/fvt.png";
 
 export default function SpecialListComponent() {
+  
   const data = [
     {
       id: 1,
@@ -32,7 +33,7 @@ export default function SpecialListComponent() {
   ];
 
   return (
-    <div className="container my-4">
+    <div className="container ">
       <div className="row justify-content-center">
         <div className="text-center ">
           <span className="slug-desc fs-3 " style={{ color: "#FF9F0D" }}>
@@ -42,7 +43,7 @@ export default function SpecialListComponent() {
             className="text-white slug-desc my-4 "
             style={{ fontSize: "60px", lineHeight: "70px" }}
           >
-            <span style={{ color: "#FF9F0D", fontSize: "50px" }}>Ch</span>oose
+            <span style={{ color: "#FF9F0D", fontSize: "70px" }}>Ch</span>oose
             our special items
           </h1>
         </div>

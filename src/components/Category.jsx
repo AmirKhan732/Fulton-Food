@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import burgerImage from "../../assets/1.png";
-import sandwichImg from "../../assets/Sandwich.jpg";
-import hotdogImg from "../../assets/hotdog.jpg";
-import drinkImg from "../../assets/drinks.jpg";
+import burgerImage from "../assets/1.png";
+import sandwichImg from "../assets/Sandwich.jpg";
+import hotdogImg from "../assets/hotdog.jpg";
+import drinkImg from "../assets/drinks.jpg";
 
 export default function Category() {
   const [activeCategory, setActiveCategory] = useState("Burgers");
@@ -139,7 +139,7 @@ export default function Category() {
           className="text-white slug-desc my-4"
           style={{ fontSize: "60px", lineHeight: "70px" }}
         >
-          <span className="theme-color" style={{ fontSize: "60px" }}>
+          <span className="theme-color" style={{ fontSize: "70px" }}>
             Ch
           </span>
           oose our special items

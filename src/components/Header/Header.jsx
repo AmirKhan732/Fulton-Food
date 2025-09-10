@@ -17,7 +17,7 @@ const Header = () => {
             height="60"
           />
         </div>
-        <div className="d-flex flex-row py-4 px-2 gap-4 ">
+        <div className="d-flex flex-row slug-desc py-4 px-2 gap-4 ">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -33,6 +33,14 @@ const Header = () => {
             }
           >
             Menu
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? "btn text-warning" : "btn text-white"
+            }
+          >
+            About
           </NavLink>
           <NavLink
             to="/blogs"
