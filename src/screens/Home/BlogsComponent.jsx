@@ -61,6 +61,7 @@ export default function BlogsComponent() {
 
               {/* Blog Body */}
               <div className="card-body text-white">
+              
                 {/* Date */}
                 <p className="theme-color fw-bold mb-2">{item.date}</p>
                 {/* Description */}
