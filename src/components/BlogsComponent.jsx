@@ -56,11 +56,6 @@ export default function BlogsComponent() {
                 style={{ width: "100%", height: "auto", objectFit: "cover" }}
               />
               <div className="card-body text-white">
-<<<<<<< HEAD:src/screens/Home/BlogsComponent.jsx
-              
-                {/* Date */}
-=======
->>>>>>> 60815b129e6d8aeb09669e77b2256b83523cd73f:src/components/BlogsComponent.jsx
                 <p className="theme-color fw-bold mb-2">{item.date}</p>
                 <p className="card-text slug-desc">{item.description}</p>
                 <div className="d-flex justify-content-between align-items-center mt-3">

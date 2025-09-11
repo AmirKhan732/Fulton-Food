@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import { useNavigate } from "react-router-dom";
 
 import blog1 from "../assets/blog1.png";
 import recent1 from "../assets/recent1.png";
@@ -9,6 +10,7 @@ import pizza from "../assets/pizza.png";
 import GoBack from "../components/GoBack";
 
 export default function Blogs() {
+  const navigation = useNavigate();
   const [page, setPage] = useState(1);
   const blogsPerPage = 4;
   const blogContainerRef = useRef(null);
@@ -180,37 +182,36 @@ export default function Blogs() {
       <GoBack />
       <div className="d-flex flex-row justify-content-center ">
         {/* Blogs Container */}
-        <div className="col-md-7 " ref={blogContainerRef}>
+       
+        <div className="col-md-7">
           {paginatedBlogs.map((item) => (
-            <div className="mb-3" key={item.id}>
+            <div key={item.id} className="mb-3">
               <div className="col-md-12">
                 <img src={item.image} className="img-fluid rounded" alt="..." />
               </div>
-              <div className="">
-                <div className="card-body">
-                  <p className="card-text py-3 theme-color h4 slug-desc">
-                    <i className="bi bi-calendar-check me-2"></i>
-                    {item.time}
-                  </p>
-                  <h2 className="card-title text-white slug-desc">
-                    {item.title}
-                  </h2>
-                  <p className="card-text text-white slug-desc py-3">
-                    {item.description}
-                  </p>
-                  <a
-                 
-                    onClick={() => navigation("/blogdetail")}
-                    className="btn theme-color btn-outline-light slug-desc mb-4"
-                  >
-                    {item.btn}
-                    <i class="bi bi-box-arrow-in-up-right ms-2"></i>
-                  </a>
-                </div>
+              <div className="card-body">
+                <p className="card-text py-3 theme-color h4 slug-desc">
+                  <i className="bi bi-calendar-check me-2"></i>
+                  {item.time}
+                </p>
+                <h2 className="card-title text-white slug-desc">
+                  {item.title}
+                </h2>
+                <p className="card-text text-white slug-desc py-3">
+                  {item.description}
+                </p>
+                <button
+                  onClick={() => navigation(`/blogdetail/${item.id}`)}
+                  className="btn theme-color btn-outline-light slug-desc mb-4"
+                >
+                  {item.btn}
+                  <i className="bi bi-box-arrow-in-up-right ms-2"></i>
+                </button>
               </div>
             </div>
           ))}
         </div>
+        {/* items Details */}
         <div className="col-md-4  px-2">
           {/* input field */}
           <div

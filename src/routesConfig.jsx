@@ -16,7 +16,9 @@ const routesConfig = [
   { path: "/about", element: <About />, webLayout: true },
   { path: "/faqs", element: <FAQs />, webLayout: true },
   {path:"termsandconditions",element:<TermsAndConditions/> ,webLayout:true},
-  {path:"blogdetail",element:<BlogDetail/> ,webLayout:true},
+  {path:"blogdetail/:id",element:<BlogDetail/> ,webLayout:true},
+  
+
 ];
 
 export default routesConfig;
