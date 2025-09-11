@@ -7,6 +7,7 @@ import recent1 from "../assets/recent1.png";
 import recent2 from "../assets/recent2.png";
 import pizza from "../assets/pizza.png";
 import detailmenu from "../assets/detailmenu.png";
+import BlogsComponent from "../components/BlogsComponent";
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -321,6 +322,7 @@ const BlogDetail = () => {
           </div>
         </div>
       </div>
+      <BlogsComponent />
     </div>
   );
 };
