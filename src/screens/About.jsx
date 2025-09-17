@@ -81,9 +81,9 @@ const About = () => {
           className="container position-relative"
           style={{ marginTop: "-180px" }}
         >
-          <div className="row justify-content-center g-4">
+          <div className="row justify-content-center g-3">
             {ChefList.map((chef) => (
-              <div className="col-md-3 col-sm-6" key={chef.id}>
+              <div className="col-md-3 " key={chef.id}>
                 <div className="card border-0 shadow">
                   <img
                     src={chef.image}

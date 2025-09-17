@@ -120,7 +120,6 @@ const SupportAndPolicy = () => {
               communication. We do not sell your information to third parties.
             </p>
           </div>
-
           <div id="section8" className="content-section py-3">
             <h2>Contact Us</h2>
             <p className="fs-5">

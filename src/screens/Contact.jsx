@@ -43,7 +43,7 @@ const Contact = () => {
     <div className="">
      <GoBack/>
       <div className="d-flex justify-content-center  align-items-center">
-        <div className="d-flex flex-row col-10 bg-white rounded p-2">
+        <div className="d-flex flex-row col-10 bg-white rounded p-2 mb-5">
           <div
             className="col-md-4 rounded slug-desc"
             style={{ backgroundColor: " #787878" }}
