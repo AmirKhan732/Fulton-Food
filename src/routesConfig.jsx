@@ -6,7 +6,8 @@ import Contact from "./screens/Contact";
 import About from "./screens/About";
 import FAQs from "./screens/FAQs";
 import BlogDetail from "./screens/BlogDetail";
-import TermsAndConditions from "./screens/TermsandConditions";
+import SupportAndPolicy from "./screens/SupportAndPolicy";
+import TermsAndConditions from "./screens/TermsAndConditions";
 
 const routesConfig = [
   { path: "/", element: <Home />, webLayout: true },
@@ -17,6 +18,7 @@ const routesConfig = [
   { path: "/faqs", element: <FAQs />, webLayout: true },
   {path:"termsandconditions",element:<TermsAndConditions/> ,webLayout:true},
   {path:"blogdetail/:id",element:<BlogDetail/> ,webLayout:true},
+  {path:"supportandpolicy",element:<SupportAndPolicy/> ,webLayout:true},
   
 
 ];

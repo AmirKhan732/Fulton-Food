@@ -77,7 +77,7 @@ export default function Footer() {
               Terms & Conditions
             </button>
             <button
-              onClick={() => navigate("/policy")}
+              onClick={() => navigate("/supportandpolicy")}
               className="btn text-white text-start"
             >
               Support & Policy
