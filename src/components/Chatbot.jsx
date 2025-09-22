@@ -12,6 +12,7 @@ const Chatbot = () => {
 
   const sendMessage = async () => {
     if (!input.trim()) return;
+
     const userMsg = { role: "user", content: input };
     setMessages((prev) => [...prev, userMsg]);
 
@@ -37,30 +38,18 @@ const Chatbot = () => {
     setInput("");
   };
 
-  const newConversation = () => {
-    setMessages([]);
-  };
+  const newConversation = () => setMessages([]);
 
   return (
     <>
       {/* Floating Button */}
       <button
-        className="btn rounded-circle shadow-lg d-flex justify-content-center align-items-center"
-        style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          width: "60px",
-          height: "60px",
-          fontSize: "24px",
-          background: "linear-gradient(135deg, #ff9f0d, #1a1a1a)",
-        }}
+        className="btn rounded-circle shadow-lg d-flex justify-content-center align-items-center chatbot-float-btn"
         onClick={() => setIsOpen(true)}
       >
         <i className="bi bi-discord text-light fs-1"></i>
       </button>
 
-      {/* Modal */}
       {isOpen && (
         <div
           className="modal fade show"
@@ -70,31 +59,18 @@ const Chatbot = () => {
           }}
         >
           <div className="modal-dialog modal-dialog-centered modal-lg">
-            <div
-              className="modal-content text-light"
-              style={{
-                background: "linear-gradient(135deg, #0d0d0d, #1c1c1c, #ff9f0d)",
-                borderRadius: "15px",
-                overflow: "hidden",
-                border: "1px solid #ff9f0d",
-              }}
-            >
+            <div className="modal-content text-light chatbot-modal">
+              {/* Header */}
               <div className="modal-header border-0">
-                <h3 className="modal-title fw-bold text-light">
-                  ⚡ Firebase AI Chatbot
-                </h3>
+                <h3 className="modal-title fw-bold">⚡ Firebase AI Chatbot</h3>
                 <button
                   className="btn-close btn-close-white"
                   onClick={() => setIsOpen(false)}
                 ></button>
               </div>
-              <div
-                className="modal-body d-flex flex-column"
-                style={{
-                  height: "400px",
-                  overflowY: "auto",
-                }}
-              >
+
+              {/* Body */}
+              <div className="modal-body d-flex flex-column chatbot-body">
                 {messages.length === 0 ? (
                   <p className="text-muted">Start a new conversation...</p>
                 ) : (
@@ -110,9 +86,12 @@ const Chatbot = () => {
                         maxWidth: "75%",
                         background:
                           msg.role === "user"
-                            ? "linear-gradient(135deg, #ff9f0d, #333333)"
+                            ? "linear-gradient(135deg, #1b1a19, #333)"
                             : "linear-gradient(135deg, #2a2a2a, #1c1c1c)",
-                        border: msg.role === "user" ? "1px solid #ff9f0d" : "1px solid #333",
+                        border:
+                          msg.role === "user"
+                            ? "1px solid #1b1a19"
+                            : "1px solid #333",
                       }}
                     >
                       {msg.role === "user" ? (
@@ -125,75 +104,28 @@ const Chatbot = () => {
                   ))
                 )}
               </div>
-              <div
-                className="modal-footer d-flex"
-                style={{
-                  backgroundColor: "#111",
-                  borderTop: "1px solid #333",
-                }}
-              >
+
+              {/* Footer */}
+              <div className="modal-footer d-flex chatbot-footer">
                 <div className="input-group flex-grow-1">
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control chatbot-input"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Type a message..."
                     onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                    style={{
-                      borderRadius: "50px",
-                      backgroundColor: "#1c1c1c",
-                      color: "white",
-                      border: "1px solid #ff9f0d",
-                      padding: "12px 20px",
-                      boxShadow: "inset 0 0 5px rgba(255, 159, 13, 0.5)",
-                    }}
                   />
                   <button
-                    className="btn"
+                    className="btn chatbot-send-btn"
                     onClick={sendMessage}
-                    style={{
-                      borderRadius: "50px",
-                      marginLeft: "10px",
-                      background:
-                        "linear-gradient(135deg, #ff9f0d, #ff6f00, #222)",
-                      color: "white",
-                      fontWeight: "bold",
-                      padding: "10px 20px",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.4)",
-                      transition: "all 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background =
-                        "linear-gradient(135deg, #ffb84d, #ff6f00)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background =
-                        "linear-gradient(135deg, #ff9f0d, #ff6f00, #222)";
-                    }}
                   >
                     Send
                   </button>
                 </div>
                 <button
-                  className="btn ms-2 text-white"
+                  className="btn chatbot-new-btn ms-2"
                   onClick={newConversation}
-                  style={{
-                    borderRadius: "50px",
-                    padding: "10px 20px",
-                    fontWeight: "bold",
-                    background: "linear-gradient(135deg, #2a2a2a, #1c1c1c)",
-                    border: "1px solid #ff9f0d",
-                    transition: "all 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background =
-                      "linear-gradient(135deg, #333, #222)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background =
-                      "linear-gradient(135deg, #2a2a2a, #1c1c1c)";
-                  }}
                 >
                   New Chat
                 </button>
@@ -203,17 +135,90 @@ const Chatbot = () => {
         </div>
       )}
 
-      {/* Custom Scrollbar Style */}
+      {/* Custom Styles */}
       <style>{`
-        .modal-body::-webkit-scrollbar {
+        /* Floating Button Animation */
+        .chatbot-float-btn {
+          position: fixed;
+          bottom: 40px;
+          right: 50px;
+          width: 60px;
+          height: 60px;
+          font-size: 24px;
+          background: linear-gradient(135deg, #ff9f0d, #ff6f00, #e65100);
+          animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+
+        /* Modal */
+        .chatbot-modal {
+          background: linear-gradient(135deg, #1c1c1c, #0d0d0d, #1c1c1c);
+          border-radius: 15px;
+          border: 1px solid #ff9f0d;
+          overflow: hidden;
+        }
+
+        /* Body */
+        .chatbot-body {
+          height: 400px;
+          overflow-y: auto;
+        }
+        .chatbot-body::-webkit-scrollbar {
           width: 8px;
         }
-        .modal-body::-webkit-scrollbar-thumb {
+        .chatbot-body::-webkit-scrollbar-thumb {
           background: linear-gradient(180deg, #ff9f0d, #333);
           border-radius: 10px;
         }
-        .modal-body::-webkit-scrollbar-track {
+        .chatbot-body::-webkit-scrollbar-track {
           background: #1a1a1a;
+        }
+
+        /* Footer */
+        .chatbot-footer {
+          background-color: #111;
+          border-top: 1px solid #333;
+        }
+
+        /* Input */
+        .chatbot-input {
+          border-radius: 50px;
+          background-color: #1c1c1c;
+          color: white;
+          border: 1px solid #ff9f0d;
+          padding: 12px 20px;
+          box-shadow: inset 0 0 5px rgba(255, 159, 13, 0.5);
+        }
+
+        /* Buttons */
+        .chatbot-send-btn {
+          border-radius: 50px;
+          margin-left: 10px;
+          background: linear-gradient(135deg, #ff9f0d, #ff6f00, #222);
+          color: white;
+          font-weight: bold;
+          padding: 10px 20px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+          transition: all 0.3s ease;
+        }
+        .chatbot-send-btn:hover {
+          background: linear-gradient(135deg, #ffb84d, #ff6f00);
+        }
+
+        .chatbot-new-btn {
+          border-radius: 50px;
+          padding: 10px 20px;
+          font-weight: bold;
+          color: white;
+          background: linear-gradient(135deg, #2a2a2a, #1c1c1c);
+          border: 1px solid #ff9f0d;
+          transition: all 0.3s ease;
+        }
+        .chatbot-new-btn:hover {
+          background: linear-gradient(135deg, #333, #222);
         }
       `}</style>
     </>
@@ -221,20 +226,3 @@ const Chatbot = () => {
 };
 
 export default Chatbot;
-
-
-//  <button
-//         className="btn rounded-circle shadow-lg d-flex justify-content-center align-items-center"
-//         style={{
-//           position: "fixed",
-//           bottom: "20px",
-//           right: "20px",
-//           width: "60px",
-//           height: "60px",
-//           fontSize: "24px",
-//           background: "linear-gradient(135deg, #ff9f0d, #ff6f00, #e65100)",
-//         }}
-//         onClick={() => setIsOpen(true)}
-//       >
-//         <i className="bi bi-discord text-light fs-1"></i>
-//       </button>
