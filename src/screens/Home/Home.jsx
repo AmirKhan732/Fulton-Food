@@ -11,11 +11,13 @@ import BlogsComponent from "../../components/BlogsComponent";
 import AboutUsComponent from "../../components/AboutUsComponent";
 import WhyChooseUsBlock from "../../components/WhyChooseUsBlock";
 import SpecialListComponent from "../../components/SpecialListComponent";
+import Chatbot from "../../components/Chatbot";
 
 const Home = () => {
   const navigate = useNavigate();
   return (
     <div className="container ">
+      <Chatbot/>
       <div
         className="container d-flex flex-row justify-content-center align-items-center py-5"
         style={{ height: "80vh" }}
