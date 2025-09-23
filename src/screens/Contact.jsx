@@ -78,7 +78,7 @@ const Contact = () => {
                 <TextField
                   name="firstName"
                   label="First Name"
-                  variant="filled"
+                  variant="standard"
                   value={formData.firstName}
                   onChange={handleChange}
                   error={!!errors.firstName}

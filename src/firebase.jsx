@@ -15,3 +15,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export default app;
+
+
+
+// initFirebaseAI({
+//   apiKey: "AIzaSyCU0xLBfjrz84piQbdP48JYODhR1eCefz4",
+//   authDomain: "generated-arena-443910-s4.firebaseapp.com",
+//   projectId: "generated-arena-443910-s4",
+//   storageBucket: "generated-arena-443910-s4.firebasestorage.app",
+//   messagingSenderId: "868411728836",
+//   appId: "1:868411728836:web:8b47321fb79cbbd937ba91",
+// });

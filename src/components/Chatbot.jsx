@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { getAI, getGenerativeModel, GoogleAIBackend } from "firebase/ai";
 import app from "../firebase";
+import botimage from "../assets/friendlyrobo.png";
+import TextField from "@mui/material/TextField";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
 
   const ai = getAI(app, { backend: new GoogleAIBackend() });
-  const model = getGenerativeModel(ai, { model: "gemini-1.5-flash" });
+  const model = getGenerativeModel(ai, { model: "gemini-2.5-flash" });
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -16,40 +20,67 @@ const Chatbot = () => {
     const userMsg = { role: "user", content: input };
     setMessages((prev) => [...prev, userMsg]);
 
+    setinput("")
+    setLoading(true)
+
     try {
+      const prompt = `
+The following is a conversation with an AI assistant for Fulton Foods, a fast food restaurant. 
+The assistant is helpful, creative, clever, and very friendly. 
+It should always answer concisely and accurately about food, service, and Fulton Foods. 
+
+Brand Intro:  
+"Extra Ordinary Taste and Experience. We take pride in serving fresh, high-quality meals crafted with the finest ingredients, ensuring every dish is full of flavor. With a passion for taste and a commitment to exceptional service, we make every dining experience truly special. 5+ Years Of Experience. This is our phone number: 123-456-7890." 
+
+Now the user says: "${input}"
+`;
+
+      const formattedMessages = messages.map((m) => ({
+        role: m.role === "user" ? "user" : "model",
+        parts: [{ text: m.content }],
+      }));
+
       const result = await model.generateContent({
         contents: [
-          ...messages.map((m) => ({
-            role: m.role,
-            parts: [{ text: m.content }],
-          })),
-          { role: "user", parts: [{ text: input }] },
+          ...formattedMessages,
+          { role: "user", parts: [{ text: prompt }] },
         ],
       });
+
       const reply = result.response.text() || "No response";
-      setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
+
+      setMessages((prev) => [...prev, { role: "model", content: reply }]);
     } catch (err) {
       console.error("AI Error:", err);
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "⚠️ Error fetching response." },
+        { role: "model", content: "⚠️ Error fetching response." },
       ]);
     }
-    setInput("");
+
+    setLoading(false)
   };
 
-  const newConversation = () => setMessages([]);
+  // const newConversation = () => setMessages([]);
+
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <>
-      {/* Floating Button */}
       <button
-        className="btn rounded-circle shadow-lg d-flex justify-content-center align-items-center chatbot-float-btn"
+        className="btn rounded-circle d-flex justify-content-center align-items-center chatbot-float-btn"
         onClick={() => setIsOpen(true)}
       >
-        <i className="bi bi-discord text-light fs-1"></i>
+        <img
+          src={botimage}
+          alt="Chatbot"
+          style={{ width: "65px", height: "65px" }}
+        />
       </button>
-
       {isOpen && (
         <div
           className="modal fade show"
@@ -60,19 +91,27 @@ const Chatbot = () => {
         >
           <div className="modal-dialog modal-dialog-centered modal-lg">
             <div className="modal-content text-light chatbot-modal">
-              {/* Header */}
               <div className="modal-header border-0">
-                <h3 className="modal-title fw-bold">⚡ Firebase AI Chatbot</h3>
+                <h2 className="modal-title  fw-bold theme-color slug-desc">
+                  Fulton Foods Chatbot
+                </h2>
                 <button
                   className="btn-close btn-close-white"
                   onClick={() => setIsOpen(false)}
                 ></button>
               </div>
-
-              {/* Body */}
               <div className="modal-body d-flex flex-column chatbot-body">
                 {messages.length === 0 ? (
-                  <p className="text-muted">Start a new conversation...</p>
+                  <div className="d-flex flex-column justify-content-center align-items-center h-100 text-center">
+                    <img
+                      src={botimage}
+                      alt="Chatbot"
+                      style={{ width: "150px", height: "190px" }}
+                    />
+                    <h5 className="mt-3 theme-color slug-desc">
+                      Hello! I'm your friendly chatbot.
+                    </h5>
+                  </div>
                 ) : (
                   messages.map((msg, i) => (
                     <div
@@ -86,12 +125,8 @@ const Chatbot = () => {
                         maxWidth: "75%",
                         background:
                           msg.role === "user"
-                            ? "linear-gradient(135deg, #1b1a19, #333)"
-                            : "linear-gradient(135deg, #2a2a2a, #1c1c1c)",
-                        border:
-                          msg.role === "user"
-                            ? "1px solid #1b1a19"
-                            : "1px solid #333",
+                            ? "linear-gradient(135deg, #2e2e2dff, #212022ff)"
+                            : "linear-gradient(135deg, #212022ff, #2e2e2dff)",
                       }}
                     >
                       {msg.role === "user" ? (
@@ -103,47 +138,77 @@ const Chatbot = () => {
                     </div>
                   ))
                 )}
+                <div ref={messagesEndRef} />
               </div>
-
-              {/* Footer */}
               <div className="modal-footer d-flex chatbot-footer">
-                <div className="input-group flex-grow-1">
-                  <input
-                    type="text"
-                    className="form-control chatbot-input"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Type a message..."
-                    onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                  />
-                  <button
-                    className="btn chatbot-send-btn"
-                    onClick={sendMessage}
+                <div className="d-flex w-100 align-items-center">
+                  <div style={{ flex: "0 0 90%" }}>
+                    <TextField
+                      fullWidth
+                      id="outlined-basic"
+                      label="Chat with AI"
+                      variant="filled"
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      placeholder="Type a message..."
+                      onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                      InputProps={{
+                        style: {
+                          borderRadius: "8px",
+                          background: "#1c1c1c",
+                          color: "white",
+                        },
+                      }}
+                      InputLabelProps={{
+                        style: { color: "#aaa" },
+                      }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      flex: "0 0 10%",
+                      marginLeft: "10px",
+                      paddingVertical: "25px",
+                    }}
                   >
-                    Send
-                  </button>
+                    <button
+                      className="btn w-100 "
+                      onClick={sendMessage}
+                      style={{
+                        borderRadius: "8px",
+                        background: "linear-gradient(135deg, #9d4edd, #fff)",
+                        color: "black",
+                        fontWeight: "bold",
+                        padding: "10px 0",
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.4)",
+                        transition: "0.3s",
+                      }}
+                      onMouseEnter={(e) =>
+                        (e.target.style.background =
+                          "linear-gradient(135deg, #fff, #9d4edd)")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.target.style.background =
+                          "linear-gradient(135deg, #9d4edd, #fff)")
+                      }
+                    >
+                      Send
+                    </button>
+                  </div>
                 </div>
-                <button
-                  className="btn chatbot-new-btn ms-2"
-                  onClick={newConversation}
-                >
-                  New Chat
-                </button>
               </div>
             </div>
           </div>
         </div>
       )}
-
-      {/* Custom Styles */}
+      ;
       <style>{`
-        /* Floating Button Animation */
         .chatbot-float-btn {
           position: fixed;
           bottom: 40px;
           right: 50px;
-          width: 60px;
-          height: 60px;
+          width: 80px;
+          height: 80px;
           font-size: 24px;
           background: linear-gradient(135deg, #ff9f0d, #ff6f00, #e65100);
           animation: float 3s ease-in-out infinite;
@@ -152,18 +217,15 @@ const Chatbot = () => {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-8px); }
         }
-
-        /* Modal */
         .chatbot-modal {
-          background: linear-gradient(135deg, #1c1c1c, #0d0d0d, #1c1c1c);
-          border-radius: 15px;
-          border: 1px solid #ff9f0d;
-          overflow: hidden;
-        }
-
-        /* Body */
+  border: 3px solid transparent; /* make border visible but transparent */
+  border-radius: 15px;
+  background: 
+    linear-gradient(135deg, #1c1c1c, #0d0d0d, #1c1c1c) padding-box, /* inner bg */
+    linear-gradient(135deg, #ff9f0d, red) border-box; /* gradient border */
+}
         .chatbot-body {
-          height: 400px;
+          height: 400px;                                        
           overflow-y: auto;
         }
         .chatbot-body::-webkit-scrollbar {
@@ -176,24 +238,18 @@ const Chatbot = () => {
         .chatbot-body::-webkit-scrollbar-track {
           background: #1a1a1a;
         }
-
-        /* Footer */
         .chatbot-footer {
           background-color: #111;
           border-top: 1px solid #333;
         }
-
-        /* Input */
         .chatbot-input {
-          border-radius: 50px;
-          background-color: #1c1c1c;
-          color: white;
-          border: 1px solid #ff9f0d;
-          padding: 12px 20px;
-          box-shadow: inset 0 0 5px rgba(255, 159, 13, 0.5);
+       
+       
+       
+          // border: 1px solid #ff9f0d;
+       background: #1c1c1c;
+          // box-shadow: inset 0 0 5px rgba(241, 238, 234, 0.5);
         }
-
-        /* Buttons */
         .chatbot-send-btn {
           border-radius: 50px;
           margin-left: 10px;
@@ -207,7 +263,6 @@ const Chatbot = () => {
         .chatbot-send-btn:hover {
           background: linear-gradient(135deg, #ffb84d, #ff6f00);
         }
-
         .chatbot-new-btn {
           border-radius: 50px;
           padding: 10px 20px;
