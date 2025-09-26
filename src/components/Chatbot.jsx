@@ -10,7 +10,6 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-
   const ai = getAI(app, { backend: new GoogleAIBackend() });
   const model = getGenerativeModel(ai, { model: "gemini-2.5-flash" });
 
@@ -20,8 +19,8 @@ const Chatbot = () => {
     const userMsg = { role: "user", content: input };
     setMessages((prev) => [...prev, userMsg]);
 
-    setinput("")
-    setLoading(true)
+    setInput("");
+    setLoading(true);
 
     try {
       const prompt = `
@@ -58,16 +57,14 @@ Now the user says: "${input}"
       ]);
     }
 
-    setLoading(false)
+    setLoading(false);
   };
-
-  // const newConversation = () => setMessages([]);
 
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, loading]);
 
   return (
     <>
@@ -113,30 +110,47 @@ Now the user says: "${input}"
                     </h5>
                   </div>
                 ) : (
-                  messages.map((msg, i) => (
-                    <div
-                      key={i}
-                      className={`d-inline-block p-2 mb-2 rounded shadow-sm ${
-                        msg.role === "user"
-                          ? "text-light align-self-end"
-                          : "text-light align-self-start"
-                      }`}
-                      style={{
-                        maxWidth: "75%",
-                        background:
+                  <>
+                    {messages.map((msg, i) => (
+                      <div
+                        key={i}
+                        className={`d-inline-block p-2 mb-2 rounded shadow-sm ${
                           msg.role === "user"
-                            ? "linear-gradient(135deg, #2e2e2dff, #212022ff)"
-                            : "linear-gradient(135deg, #212022ff, #2e2e2dff)",
-                      }}
-                    >
-                      {msg.role === "user" ? (
-                        <i className="bi bi-person-fill me-2"></i>
-                      ) : (
+                            ? "text-light align-self-end"
+                            : "text-light align-self-start"
+                        }`}
+                        style={{
+                          maxWidth: "75%",
+                          background:
+                            msg.role === "user"
+                              ? "linear-gradient(135deg, #2e2e2dff, #212022ff)"
+                              : "linear-gradient(135deg, #212022ff, #2e2e2dff)",
+                        }}
+                      >
+                        {msg.role === "user" ? (
+                          <i className="bi bi-person-fill me-2"></i>
+                        ) : (
+                          <i className="bi bi-robot me-2"></i>
+                        )}
+                        {msg.content}
+                      </div>
+                    ))}
+                    {loading && (
+                      <div
+                        className="d-inline-block p-2 mb-2 rounded shadow-sm text-light align-self-start"
+                        style={{
+                          maxWidth: "75%",
+                          background:
+                            "linear-gradient(135deg, #212022ff, #2e2e2dff)",
+                          fontStyle: "italic",
+                          opacity: 0.8,
+                        }}
+                      >
                         <i className="bi bi-robot me-2"></i>
-                      )}
-                      {msg.content}
-                    </div>
-                  ))
+                        Bot is thinking…
+                      </div>
+                    )}
+                  </>
                 )}
                 <div ref={messagesEndRef} />
               </div>
@@ -151,7 +165,7 @@ Now the user says: "${input}"
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       placeholder="Type a message..."
-                      onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                      onKeyDown={(e) => e.key === "Enter" && sendMessage()}
                       InputProps={{
                         style: {
                           borderRadius: "8px",
@@ -162,6 +176,7 @@ Now the user says: "${input}"
                       InputLabelProps={{
                         style: { color: "#aaa" },
                       }}
+                      disabled={loading}
                     />
                   </div>
                   <div
@@ -174,22 +189,25 @@ Now the user says: "${input}"
                     <button
                       className="btn w-100 "
                       onClick={sendMessage}
+                      disabled={loading}
                       style={{
                         borderRadius: "8px",
-                        background: "linear-gradient(135deg, #9d4edd, #fff)",
+                        background: "linear-gradient(135deg, #ff9f0d, #fff)",
                         color: "black",
                         fontWeight: "bold",
                         padding: "10px 0",
                         boxShadow: "0 4px 10px rgba(0,0,0,0.4)",
                         transition: "0.3s",
+                        opacity: loading ? 0.6 : 1,
+                        cursor: loading ? "not-allowed" : "pointer",
                       }}
                       onMouseEnter={(e) =>
                         (e.target.style.background =
-                          "linear-gradient(135deg, #fff, #9d4edd)")
+                          "linear-gradient(135deg, #fff, #ff9f0d)")
                       }
                       onMouseLeave={(e) =>
                         (e.target.style.background =
-                          "linear-gradient(135deg, #9d4edd, #fff)")
+                          "linear-gradient(135deg, #ff9f0d, #fff)")
                       }
                     >
                       Send
@@ -219,7 +237,6 @@ Now the user says: "${input}"
         }
         .chatbot-modal {
   border: 3px solid transparent; /* make border visible but transparent */
-  border-radius: 15px;
   background: 
     linear-gradient(135deg, #1c1c1c, #0d0d0d, #1c1c1c) padding-box, /* inner bg */
     linear-gradient(135deg, #ff9f0d, red) border-box; /* gradient border */

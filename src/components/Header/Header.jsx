@@ -8,7 +8,7 @@ const Header = () => {
     <>
       <div className="header d-flex flex-row justify-content-between px-5">
         <div className="d-flex flex-row align-items-center">
-          <h2 className="fw-bold text-white">Fulton</h2>
+          <h1 className="fw-bold slug-desc text-white">Fulton</h1>
           <img
             src={LogoIcon}
             alt="menu"
@@ -50,11 +50,28 @@ const Header = () => {
           >
             Blogs
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/contact"
             className={({ isActive }) =>
               isActive ? "btn text-white bg-warning" : "btn bg-warning"
             }
+          >
+            Contact
+          </NavLink> */}
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              `custom-link ${isActive ? "active" : ""}`
+            }
+            style={({ isActive }) => ({
+              padding: "10px 20px",
+              borderRadius: "8px",
+              textDecoration: "none",
+              backgroundColor:"#ff9f0d",
+              color: isActive ? "black" : "white",
+              fontWeight: "bold",
+              transition: "0.3s",
+            })}
           >
             Contact
           </NavLink>
